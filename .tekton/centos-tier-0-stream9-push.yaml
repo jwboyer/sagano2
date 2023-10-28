@@ -211,7 +211,7 @@ spec:
         - name: PLATFORM
           value: linux/arm64
         - name: BUILDER_IMAGE
-          value: quay.io/bcook/arm-ostree-builder:latest
+          value: quay.io/bcook/arm-ostree-builder-c9s:latest
 
       runAfter:
       - prefetch-dependencies

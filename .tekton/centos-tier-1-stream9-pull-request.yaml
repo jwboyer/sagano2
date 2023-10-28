@@ -213,9 +213,9 @@ spec:
           - name: COMMIT_SHA
             value: $(tasks.clone-repository.results.commit)
           - name: PLATFORM
-            value: linux/arm64
+            value: linux/amd64
           - name: BUILDER_IMAGE
-            value: quay.io/bcook/arm-ostree-builder-c9s:latest
+            value: quay.io/redhat-user-workloads/project-sagano-tenant/rpm-osstree-builder-image/ostree-builder-image:build-562b2-1698517872
         runAfter:
           - prefetch-dependencies
         taskRef:

@@ -4,8 +4,9 @@ metadata:
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/brianwcook/sagano?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    build.appstudio.reddat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: '[main]'
     pipelinesascode.tekton.dev/on-cel-expression: |
       event == "push" && ".tekton/centos-tier-0-stream9-push.yaml".pathChanged()
   creationTimestamp: null

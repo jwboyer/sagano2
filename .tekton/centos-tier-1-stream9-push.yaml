@@ -7,7 +7,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: |
-      event == "push" && ("centos-tier-1-stream9.yaml".pathChanged() || ".tekton/centos-tier-1-stream9-push-request.yaml".pathChanged()
+      event == "push" && ("centos-tier-1-stream9.yaml".pathChanged() || ".tekton/centos-tier-1-stream9-push.yaml".pathChanged()
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: sagano

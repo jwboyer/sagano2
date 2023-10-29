@@ -10,8 +10,7 @@ metadata:
     pipelinesascode.tekton.dev/on-cel-expression: |
             event == "pull_request" && 
             ("centos-tier-1-stream9.yaml".pathChanged() ||
-             ".tekton/centos-tier-1-stream9-pull-request.yaml".pathChanged()
-              ".tekton/centos-tier-1-stream9-push.yaml".pathChanged())
+            ".tekton/centos-tier-1-stream9-pull.yaml".pathChanged())
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: sagano

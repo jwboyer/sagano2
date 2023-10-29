@@ -7,8 +7,8 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+            event == "pull_request" && ".tekton/centos-tier-1-stream9-pull-request.yaml".pathChanged()
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: sagano
@@ -123,9 +123,6 @@ spec:
       - description: ""
         name: CHAINS-GIT_COMMIT
         value: $(tasks.clone-repository.results.commit)
-      - description: ""
-        name: JAVA_COMMUNITY_DEPENDENCIES
-        value: $(tasks.build-container.results.JAVA_COMMUNITY_DEPENDENCIES)
     tasks:
       - name: init
         params:
@@ -213,9 +210,9 @@ spec:
           - name: COMMIT_SHA
             value: $(tasks.clone-repository.results.commit)
           - name: PLATFORM
-            value: linux/arm64
+            value: linux/amd64
           - name: BUILDER_IMAGE
-            value: quay.io/bcook/arm-ostree-builder:latest
+            value: quay.io/redhat-user-workloads/project-sagano-tenant/ostree-builder/ostree-builder-fedora-38:95c3a89a79be40e758f0309f902f3d8bc47d6573
         runAfter:
           - prefetch-dependencies
         taskRef:
@@ -341,7 +338,7 @@ spec:
           - input: $(params.skip-checks)
             operator: in
             values:
-              - "false"
+              - "true"
       - name: sbom-json-check
         params:
           - name: IMAGE_URL

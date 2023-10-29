@@ -215,7 +215,7 @@ spec:
           - name: PLATFORM
             value: linux/amd64
           - name: BUILDER_IMAGE
-            value: quay.io/redhat-user-workloads/project-sagano-tenant/rpm-osstree-builder-image/ostree-builder-image:build-562b2-1698517872
+            value: quay.io/redhat-user-workloads/project-sagano-tenant/ostree-builder/ostree-builder-fedora-38:95c3a89a79be40e758f0309f902f3d8bc47d6573
         runAfter:
           - prefetch-dependencies
         taskRef:

@@ -2,28 +2,28 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   annotations:
-    build.appstudio.openshift.io/repo: https://github.com/brianwcook/sagano?rev={{revision}}
+    build.appstudio.openshift.io/repo: https://github.com/jwboyer/sagano2?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    build.appstudio.reddat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: '[main]'
     pipelinesascode.tekton.dev/on-cel-expression: |
-      event == "push" && ".tekton/centos-tier-1-stream9-push.yaml".pathChanged() && target_branch == "main" 
+      event == "push" && ".tekton/my-component-push.yaml".pathChanged() && target_branch == "main" 
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: sagano
-    appstudio.openshift.io/component: centos-tier-1-stream9
+    appstudio.openshift.io/component: centos-tier-0-stream9
     pipelines.appstudio.openshift.io/type: build
-  name: centos-tier-1-stream9-on-push
-  namespace: project-sagano-tenant
+  name: centos-tier-0-stream9-on-push
+  namespace: jboyer-tenant
 spec:
   params:
   - name: image-file
-    value: centos-tier-1-stream9.yaml
+    value: centos-tier-0-stream9.yaml
   - name: git-url
     value: '{{repo_url}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/project-sagano-tenant/sagano/centos-tier-1-stream9:{{revision}}
+    value: quay.io/redhat-user-workloads/jboyer-tenant/sagano/centos-tier-0-stream9:{{revision}}
   - name: path-context
     value: .
   - name: revision
@@ -110,9 +110,6 @@ spec:
     - description: ""
       name: CHAINS-GIT_COMMIT
       value: $(tasks.clone-repository.results.commit)
-    - description: ""
-      name: JAVA_COMMUNITY_DEPENDENCIES
-      value: $(tasks.build-container.results.JAVA_COMMUNITY_DEPENDENCIES)
     tasks:
     - name: init
       params:
